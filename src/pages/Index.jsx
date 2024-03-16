@@ -1,5 +1,7 @@
 import { Box, Button, Heading, Image, Link, Stack, Text } from "@chakra-ui/react";
 import { FaPen, FaRss, FaGithub, FaTwitter } from "react-icons/fa";
+import Layout from "../components/Layout";
+import BlogPost from "../components/BlogPost";
 
 const Index = () => {
   const posts = [
@@ -11,8 +13,8 @@ const Index = () => {
     },
     {
       id: 2,
-      title: "Building a Personal Blog with SvelteKit",
-      excerpt: "Learn how to create a fast and interactive personal blog using SvelteKit, a powerful web development framework.",
+      title: "Building a Personal Blog with React",
+      excerpt: "Learn how to create a fast and interactive personal blog using React and Chakra UI.",
       date: "2023-05-18",
     },
     {
@@ -24,7 +26,7 @@ const Index = () => {
   ];
 
   return (
-    <Box maxW="800px" mx="auto" px={4} py={8}>
+    <Layout>
       <Box textAlign="center" mb={8}>
         <Image src="https://images.unsplash.com/photo-1525186402429-b4ff38bedec6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHwxfHxwb3J0cmFpdCUyMG9mJTIwc21pbGluZyUyMHBlcnNvbnxlbnwwfHx8fDE3MTA1ODY0NzF8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Author" borderRadius="full" boxSize="150px" mx="auto" />
         <Heading as="h1" size="2xl" mt={4}>
@@ -37,18 +39,7 @@ const Index = () => {
 
       <Stack spacing={8}>
         {posts.map((post) => (
-          <Box key={post.id} p={6} borderWidth={1} rounded="md" _hover={{ shadow: "md" }}>
-            <Heading as="h2" size="xl">
-              <Link href={`/posts/${post.id}`}>{post.title}</Link>
-            </Heading>
-            <Text mt={2} color="gray.600">
-              {post.date}
-            </Text>
-            <Text mt={4}>{post.excerpt}</Text>
-            <Link href={`/posts/${post.id}`} mt={4} display="inline-block">
-              Read more &rarr;
-            </Link>
-          </Box>
+          <BlogPost key={post.id} post={post} />
         ))}
       </Stack>
 
@@ -66,7 +57,7 @@ const Index = () => {
           <FaTwitter />
         </Link>
       </Box>
-    </Box>
+    </Layout>
   );
 };
 
